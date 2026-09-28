@@ -346,25 +346,6 @@
       "id": 19,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1UwL8RXUJkMEKhK1ZIqq7WIuY-siB637e",
-      "nom": "Émilie Desvignes",
-      "metier": "Artisane du lien familial et photographe",
-      "ville": "Arès",
-      "signature": "Accompagnement à la parentalité et photographe",
-      "description": "Comment préserver le lien parent-enfant et l'équilibre familial pendant les premières années de vie de l'enfant, photographe avec une préférence pour le noir et blanc",
-      "lien1": "https://www.instagram.com/mimiepoppinsmedia33740?igsh=MXg3a2l2ZWg3MTVkbw==",
-      "lien1type": "instagram",
-      "lien2": "https://www.facebook.com/share/1J5GTYs77N/",
-      "lien2type": "facebook",
-      "lien3": null,
-      "lien3type": null,
-      "email": "magrydesvignesemilie@gmail.com",
-      "telephone": null,
-      "intervention": "Nord bassin"
-    },
-    {
-      "id": 20,
-      "fondatrice": false,
-      "photo": "https://drive.google.com/uc?export=view&id=1UwL8RXUJkMEKhK1ZIqq7WIuY-siB637e",
       "nom": "Emilie Desvignes",
       "metier": "Accompagnement des parents et futurs parents dans la création du lien familial, atelier bébé signe",
       "ville": "Arès",
@@ -381,7 +362,7 @@
       "intervention": "Bassin d'Arcachon"
     },
     {
-      "id": 21,
+      "id": 20,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=14Ipc8IgGJiOpuXfhm57thsSYU4-EjfHO",
       "nom": "Marjorie RIFFAUD",
@@ -400,7 +381,7 @@
       "intervention": "Partout dans le monde grâce aux visio"
     },
     {
-      "id": 22,
+      "id": 21,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1JnWJw_U0y1CWDlZEORoPpeW-9xYEfTbL",
       "nom": "Florian Michiels",
@@ -419,7 +400,7 @@
       "intervention": "Arès"
     },
     {
-      "id": 23,
+      "id": 22,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1EbJVcXiMoGN8EygBu9dgwrMrko9Sh6yv",
       "nom": "Mélissande PENNIELLO",
@@ -438,7 +419,7 @@
       "intervention": null
     },
     {
-      "id": 24,
+      "id": 23,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1X5wcyNG8Ps5ZDX1qOcKIIreAsICp-0rs",
       "nom": "Tiphaine DUNIAUD",
@@ -457,7 +438,7 @@
       "intervention": null
     },
     {
-      "id": 25,
+      "id": 24,
       "fondatrice": true,
       "photo": "https://drive.google.com/uc?export=view&id=1QL83FqNsjf5goO9veE-YlUuX_yddck9r",
       "nom": "Christel Biau",
@@ -476,5 +457,5 @@
       "intervention": "France et monde francophone grâce aux visio"
     }
   ],
-  "updated": "2026-09-28T16:22:09.029Z"
+  "updated": "2026-09-28T16:24:09.125Z"
 }
