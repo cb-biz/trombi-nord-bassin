@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrepreneurs 33 Nord Bassin – Trombinoscope</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bleu: #1B5EA6;
+    --bleu-ciel: #3A8AC4;
+    --bleu-clair: #E8F3FB;
+    --sable: #F5F0E8;
+    --blanc: #FFFFFF;
+    --gris-clair: #F8F9FA;
+    --gris-texte: #6B7280;
+    --texte: #1A2332;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 2px 16px rgba(27,94,166,0.08);
+    --shadow-hover: 0 8px 32px rgba(27,94,166,0.15);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--blanc);
+    color: var(--texte);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(27,94,166,0.1);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 600; color: var(--bleu);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .nav-logo svg { width: 28px; height: 28px; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 14px; color: var(--gris-texte); text-decoration: none; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--bleu); }
+  .nav-hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--bleu); }
+
+  /* ── HERO ── */
+  .hero {
+    display: block;
+    padding: 4rem 4rem 2rem;
+    max-width: 800px; margin: 0 auto;
+    position: relative;
+  }
+  .hero-bg {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 120px; overflow: hidden; pointer-events: none;
+  }
+
+  .hero-left { display: flex; flex-direction: column; justify-content: center; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--bleu-clair); color: var(--bleu);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem;
+    width: fit-content;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 700; color: var(--bleu); line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .hero-subtitle-script {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 400; font-style: italic;
+    color: var(--bleu-ciel); margin-bottom: 1.5rem;
+    display: block;
+  }
+  .wave-deco {
+    display: block; width: 120px; height: 16px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-desc { font-size: 15px; color: #4A5568; line-height: 1.8; max-width: 480px; margin-bottom: 2rem; }
+  .hero-icons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 2rem; }
+  .hero-icon-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: #4A5568; font-weight: 500;
+  }
+  .hero-icon-item .icon-wrap {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--bleu-clair); color: var(--bleu);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-size: 16px;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--bleu); color: white;
+    font-size: 15px; font-weight: 600;
+    padding: 14px 28px; border-radius: 50px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all .2s; width: fit-content;
+    box-shadow: 0 4px 16px rgba(27,94,166,0.3);
+  }
+  .btn-primary:hover { background: #154e8a; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(27,94,166,0.4); }
+  .hero-link-text {
+    margin-top: 10px; font-size: 12px; color: var(--gris-texte);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .hero-link-text a { color: var(--bleu-ciel); text-decoration: none; }
+
+  /* ── FONDATRICE CARD ── */
+  .hero-right { display: flex; align-items: center; }
+  .fondatrice-card {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid rgba(27,94,166,0.12);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    width: 100%; position: relative;
+    text-align: center;
+  }
+  .fondatrice-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--bleu); color: white;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 100px;
+    display: flex; align-items: center; gap: 6px; white-space: nowrap;
+  }
+  .fondatrice-photo {
+    width: 110px; height: 110px; border-radius: 50%;
+    border: 4px solid var(--bleu-clair);
+    object-fit: cover; margin: 1rem auto 1rem;
+    display: block; background: #ddd;
+  }
+  .fondatrice-photo-placeholder {
+    width: 110px; height: 110px; border-radius: 50%;
+    border: 4px solid var(--bleu-clair);
+    background: linear-gradient(135deg, #E8F3FB, #B5D4F4);
+    margin: 1rem auto 1rem; display: flex; align-items: center; justify-content: center;
+    font-size: 36px; color: var(--bleu); font-weight: 600;
+  }
+  .fondatrice-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-style: italic; color: var(--texte);
+    margin-bottom: 4px;
+  }
+  .fondatrice-metier { font-size: 14px; color: #4A5568; margin-bottom: 6px; }
+  .fondatrice-entreprise { font-size: 14px; font-weight: 600; color: var(--bleu-ciel); margin-bottom: 6px; }
+  .fondatrice-ville {
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+    font-size: 13px; color: var(--gris-texte); margin-bottom: 1rem;
+  }
+  .fondatrice-quote {
+    font-size: 13px; color: #4A5568; font-style: italic; line-height: 1.7;
+    margin-bottom: 1.2rem; padding: 0 0.5rem;
+    position: relative;
+  }
+  .fondatrice-quote::before { content: '❝'; color: var(--bleu-ciel); margin-right: 4px; font-style: normal; }
+  .social-icons { display: flex; justify-content: center; gap: 10px; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #E8F3FB; color: var(--bleu);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 16px;
+    transition: all .2s; border: 1.5px solid var(--bleu);
+  }
+  .social-btn:hover { background: var(--bleu); transform: scale(1.1); }
+  .social-btn:hover svg { stroke: white; fill: white; }
+
+  /* ── WAVE SEPARATOR ── */
+  .wave-sep { display: block; width: 100%; height: 60px; overflow: hidden; line-height: 0; }
+
+  /* ── SECTION ENTREPRENEURS ── */
+  .section-entrepreneurs {
+    background: var(--gris-clair);
+    padding: 3rem 4rem;
+  }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;
+  }
+  .section-title-wrap {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .section-title {
+    font-size: 1.2rem; font-weight: 700; color: var(--bleu);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .badge-membres {
+    background: var(--bleu); color: white;
+    font-size: 12px; font-weight: 700;
+    padding: 4px 12px; border-radius: 100px;
+    display: inline-block;
+  }
+
+  /* Filters */
+  .filters-bar {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .search-wrap {
+    position: relative; flex: 1; min-width: 200px; max-width: 320px;
+  }
+  .search-wrap svg {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    color: var(--gris-texte); pointer-events: none;
+    width: 16px; height: 16px;
+  }
+  .search-input {
+    width: 100%; padding: 10px 12px 10px 38px;
+    border: 1px solid rgba(27,94,166,0.2);
+    border-radius: 50px; font-size: 14px;
+    background: white; outline: none;
+    transition: border-color .2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .search-input:focus { border-color: var(--bleu); }
+  .filter-select {
+    padding: 10px 36px 10px 14px;
+    border: 1px solid rgba(27,94,166,0.2);
+    border-radius: 50px; font-size: 14px;
+    background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%236B7280' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 14px center;
+    appearance: none; outline: none; cursor: pointer;
+    font-family: 'Inter', sans-serif; color: var(--texte);
+    transition: border-color .2s;
+  }
+  .filter-select:focus { border-color: var(--bleu); }
+
+  /* Grid */
+  .grid-entrepreneurs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  /* Carte entrepreneur */
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid rgba(27,94,166,0.08);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: all .25s;
+    cursor: pointer;
+    display: flex; flex-direction: column; gap: 12px;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(27,94,166,0.2);
+  }
+  .card-top { display: flex; align-items: flex-start; gap: 14px; width: 100%; }
+  .card-photo {
+    width: 70px; height: 70px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+    border: 3px solid var(--bleu-clair);
+    background: #ddd;
+  }
+  .card-photo-placeholder {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: linear-gradient(135deg, #E8F3FB, #B5D4F4);
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 600; color: var(--bleu);
+    border: 3px solid var(--bleu-clair);
+  }
+  .card-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; overflow: hidden; }
+  .card-name { font-size: 15px; font-weight: 700; color: var(--texte); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-metier { font-size: 12px; color: #4A5568; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-ville {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px; color: var(--gris-texte);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .card-icons { display: flex; gap: 8px; margin-top: 8px; }
+  .card-icon-btn {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #E8F3FB; color: var(--bleu);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 14px;
+    transition: all .2s; border: 1.5px solid var(--bleu); cursor: pointer;
+  }
+  .card-icon-btn:hover { background: var(--bleu); color: white; transform: scale(1.1); }
+  .card-icon-btn:hover svg { stroke: white; fill: white; }
+  .card-quote {
+    font-size: 13px; color: #4A5568; font-style: italic; line-height: 1.6;
+    border-top: 1px solid rgba(27,94,166,0.08); padding-top: 12px;
+    position: relative; padding-left: 20px; padding-right: 20px;
+  }
+  .card-quote::before {
+    content: '❝'; position: absolute; left: 0; top: 10px;
+    color: var(--bleu-ciel); font-style: normal; font-size: 16px; line-height: 1;
+  }
+
+  .card-expand {
+    position: absolute; bottom: 14px; right: 14px;
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid rgba(27,94,166,0.2);
+    background: white; color: var(--bleu);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; cursor: pointer; transition: all .2s;
+  }
+  .card-expand:hover { background: var(--bleu); color: white; }
+
+  /* Empty state */
+  .empty-state {
+    grid-column: 1/-1; text-align: center;
+    padding: 4rem 2rem; color: var(--gris-texte);
+  }
+  .empty-state-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.4; }
+  .empty-state p { font-size: 16px; }
+
+  /* ── POPUP ── */
+  .popup-overlay {
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(10,20,40,0.55);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s;
+  }
+  .popup-overlay.active { opacity: 1; pointer-events: all; }
+  .popup {
+    background: white; border-radius: var(--radius);
+    max-width: 760px; width: 100%;
+    max-height: 90vh; overflow-y: auto;
+    transform: translateY(20px) scale(0.97);
+    transition: transform .3s;
+    position: relative;
+  }
+  .popup-overlay.active .popup { transform: translateY(0) scale(1); }
+  .popup-close {
+    position: absolute; top: 16px; right: 16px;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid rgba(27,94,166,0.2);
+    background: white; color: var(--texte);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 18px; font-weight: 500;
+    transition: all .2s; z-index: 2;
+  }
+  .popup-close:hover { background: var(--bleu); color: white; }
+  .popup-inner { display: grid; grid-template-columns: 1fr 1.4fr; min-height: 400px; align-items: start; }
+  .popup-left {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(27,94,166,0.1);
+    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;
+    background: linear-gradient(160deg, #f8fbff 0%, white 100%);
+    border-radius: var(--radius) 0 0 var(--radius);
+    position: sticky; top: 0; align-self: start;
+  }
+  .popup-photo {
+    width: 120px; height: 120px; border-radius: 50%;
+    object-fit: cover; border: 4px solid var(--bleu-clair);
+    background: #ddd; margin-bottom: 12px;
+  }
+  .popup-photo-placeholder {
+    width: 120px; height: 120px; border-radius: 50%;
+    border: 4px solid var(--bleu-clair);
+    background: linear-gradient(135deg, #E8F3FB, #B5D4F4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; font-weight: 600; color: var(--bleu); margin-bottom: 12px;
+  }
+  .popup-name { font-size: 1.3rem; font-weight: 700; color: var(--texte); }
+  .popup-entreprise { font-size: 14px; font-weight: 600; color: var(--bleu-ciel); }
+  .popup-metier { font-size: 13px; color: #4A5568; }
+  .popup-ville {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 13px; color: var(--gris-texte);
+  }
+  .popup-quote {
+    font-size: 13px; color: #4A5568; font-style: italic; line-height: 1.7;
+    margin-top: 8px; padding: 0 4px;
+    position: relative;
+  }
+  .popup-quote::before { content: '❝'; color: var(--bleu-ciel); margin-right: 3px; font-style: normal; }
+  .popup-right { padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 24px; }
+  .popup-section-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--bleu);
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 10px;
+  }
+  .popup-section-title svg { width: 16px; height: 16px; }
+  .popup-desc { font-size: 14px; color: #4A5568; line-height: 1.8; white-space: pre-line; max-height: 150px; overflow-y: auto; padding-right: 4px; }
+  .tags-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: var(--bleu-clair); color: var(--bleu);
+    font-size: 12px; font-weight: 600;
+    padding: 5px 12px; border-radius: 100px;
+    cursor: pointer; transition: all .2s;
+    border: 1px solid transparent;
+  }
+  .tag:hover { background: var(--bleu); color: white; }
+  .popup-links { display: flex; flex-direction: column; gap: 10px; }
+  .popup-link {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px; border-radius: var(--radius-sm);
+    border: 1px solid rgba(27,94,166,0.12);
+    text-decoration: none; color: var(--texte);
+    font-size: 13px; transition: all .2s;
+    gap: 8px;
+  }
+  .popup-link:hover { border-color: var(--bleu); background: var(--bleu-clair); }
+  .popup-link-left { display: flex; align-items: center; gap: 10px; }
+  .popup-link-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0;
+  }
+  .popup-link-icon.linkedin { background: #EBF3FB; }
+  .popup-link-icon.web { background: #E8F3FB; color: var(--bleu-ciel); }
+  .popup-link-icon.instagram { background: #FEE9F0; }
+  .popup-link-icon.email-ic { background: #F0F4F8; color: #4A5568; }
+  .popup-link-icon.phone-ic { background: #F0F4F8; color: #4A5568; }
+  .popup-link-text { font-size: 13px; color: #4A5568; word-break: break-all; }
+  .popup-intervention { font-size: 14px; color: #4A5568; line-height: 1.7; }
+  .popup-section { }
+  .popup-divider { height: 1px; background: rgba(27,94,166,0.08); }
+
+  /* ── FOOTER ── */
+  .footer-cta {
+    background: white;
+    padding: 2.5rem 4rem;
+    text-align: center;
+    border-top: 1px solid rgba(27,94,166,0.08);
+  }
+  .footer-cta-box {
+    display: inline-flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center;
+    background: var(--bleu-clair); border-radius: var(--radius);
+    padding: 1.5rem 2.5rem; border: 1px solid rgba(27,94,166,0.15);
+    max-width: 700px;
+  }
+  .footer-cta-box p { font-size: 16px; color: var(--bleu); font-weight: 600; display: flex; align-items: center; gap: 10px; }
+  .footer-cta-box a {
+    color: var(--bleu); font-weight: 700; font-size: 15px;
+    text-decoration: none; border-bottom: 2px solid var(--bleu);
+    transition: opacity .2s; display: flex; align-items: center; gap: 6px;
+    white-space: nowrap;
+  }
+  .footer-cta-box a:hover { opacity: 0.7; }
+  .footer-bottom {
+    padding: 1.5rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--gris-texte);
+    border-top: 1px solid rgba(27,94,166,0.08);
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .hero { padding: 2.5rem 2rem; }
+    .grid-entrepreneurs { grid-template-columns: repeat(2, 1fr); }
+    .section-entrepreneurs { padding: 2rem; }
+    .filters-bar { flex-direction: column; align-items: stretch; }
+    .search-wrap { max-width: none; }
+    .section-header { flex-direction: column; align-items: flex-start; }
+    .filters-bar { width: 100%; }
+    .footer-cta { padding: 2rem; }
+    .footer-bottom { padding: 1.5rem 2rem; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: block; }
+    .hero { padding: 1.5rem 1rem; }
+    .hero-icons { grid-template-columns: 1fr; }
+    .grid-entrepreneurs { grid-template-columns: 1fr; gap: 16px; }
+    .section-entrepreneurs { padding: 1.5rem 1rem; }
+    .popup-inner { grid-template-columns: 1fr; }
+    .popup-left { border-right: none; border-bottom: 1px solid rgba(27,94,166,0.1); border-radius: var(--radius) var(--radius) 0 0; position: static; }
+    .popup-desc { max-height: none; }
+    .popup-right { padding: 1.5rem; }
+    .footer-cta { padding: 1.5rem 1rem; }
+    .footer-cta-box { padding: 1.2rem 1.5rem; }
+    .footer-bottom { padding: 1rem; flex-direction: column; text-align: center; }
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card { animation: fadeInUp .4s ease both; }
+
+  /* Scrollbar */
+  .popup::-webkit-scrollbar { width: 6px; }
+  .popup::-webkit-scrollbar-track { background: transparent; }
+  .popup::-webkit-scrollbar-thumb { background: rgba(27,94,166,0.2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- BANDEAU FACEBOOK -->
+<a href="https://www.facebook.com/groups/1508110040120064/?ref=share" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#1B5EA6;color:white;text-decoration:none;font-size:13px;font-weight:600;padding:9px 1rem;text-align:center;transition:background .2s;" onmouseover="this.style.background='#154e8a'" onmouseout="this.style.background='#1B5EA6'">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+  Nous suivre sur Facebook — Rejoindre le groupe
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+</a>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="14" r="7" fill="#1B5EA6" opacity=".85"/>
+      <circle cx="26" cy="14" r="7" fill="#3A8AC4" opacity=".7"/>
+      <circle cx="20" cy="24" r="7" fill="#1B5EA6" opacity=".6"/>
+    </svg>
+    Club d'Entrepreneurs
+  </div>
+  <div class="nav-links">
+    <a href="#entrepreneurs">Membres</a>
+    <a href="#rejoindre">Rejoindre</a>
+    <a href="https://forms.gle/Rda67xiCGUTGC1aF7" target="_blank">S'inscrire</a>
+  </div>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Fond de plage subtil -->
+  <div style="position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;border-radius:0">
+    <div style="position:absolute;top:0;right:0;width:45%;height:100%;background:linear-gradient(135deg,rgba(232,243,251,0.4) 0%,rgba(181,212,244,0.2) 100%);border-radius:0 0 0 60px;"></div>
+  </div>
+
+  <div class="hero-left" style="position:relative;z-index:1">
+    <span class="hero-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="9" r="4"/><circle cx="15" cy="9" r="4" opacity=".6"/><circle cx="12" cy="16" r="4" opacity=".4"/></svg>
+      Club d'Entrepreneurs
+    </span>
+    <h1 class="hero-title">Entrepreneurs 33</h1>
+    <span class="hero-subtitle-script">Nord Bassin</span>
+    <svg class="wave-deco" viewBox="0 0 120 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 8 Q15 2 30 8 Q45 14 60 8 Q75 2 90 8 Q105 14 120 8" stroke="#3A8AC4" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+    <p class="hero-desc">Une communauté d'entrepreneurs du Nord Bassin qui se retrouve régulièrement pour partager, créer des connexions et développer des opportunités professionnelles dans une ambiance conviviale et bienveillante.<br><br>Parce qu'entreprendre est une aventure plus riche lorsqu'elle se vit ensemble.</p>
+    <div class="hero-icons">
+      <div class="hero-icon-item">
+        <div class="icon-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        Réseau local et bienveillant
+      </div>
+      <div class="hero-icon-item">
+        <div class="icon-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        Partage d'expériences
+      </div>
+      <div class="hero-icon-item">
+        <div class="icon-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        Opportunités d'affaires
+      </div>
+      <div class="hero-icon-item">
+        <div class="icon-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        Sorties &amp; événements conviviaux
+      </div>
+    </div>
+    <a href="https://forms.gle/Rda67xiCGUTGC1aF7" target="_blank" class="btn-primary">
+      👉 S'inscrire à la prochaine sortie
+    </a>
+  </div>
+
+</section>
+
+<!-- VAGUE -->
+<div class="wave-sep" style="background:white;">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;height:60px;display:block;">
+    <path d="M0,20 C360,50 1080,50 1440,20 L1440,60 L0,60 Z" fill="#F8F9FA"/>
+  </svg>
+</div>
+
+<!-- SECTION ENTREPRENEURS -->
+<section class="section-entrepreneurs" id="entrepreneurs">
+  <div class="section-header">
+    <div class="section-title-wrap">
+      <div class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="18" cy="10" r="3"/><path d="M22 21v-1a3 3 0 0 0-3-3h-1"/></svg>
+        Tous nos entrepreneurs
+      </div>
+      <span class="badge-membres" id="badge-count">0 membres</span>
+    </div>
+    <div class="filters-bar">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Rechercher un entrepreneur..." oninput="filterCards()" />
+      </div>
+      <select class="filter-select" id="filter-activite" onchange="filterCards()">
+        <option value="">Toutes les activités</option>
+      </select>
+      <select class="filter-select" id="filter-ville" onchange="filterCards()">
+        <option value="">
+          <svg style="vertical-align:-2px" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg>
+          Toutes les villes
+        </option>
+      </select>
+    </div>
+  </div>
+  <!-- Carte fondatrice — injectée dynamiquement -->
+  <div id="fondatrice-wrapper" style="margin-bottom:20px;display:none;"></div>
+
+  <div class="grid-entrepreneurs" id="grid-entrepreneurs">
+    <!-- Cartes injectées dynamiquement -->
+  </div>
+</section>
+
+<!-- VAGUE bas -->
+<div class="wave-sep" style="background:#F8F9FA;">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;height:60px;display:block;">
+    <path d="M0,40 C360,10 1080,10 1440,40 L1440,0 L0,0 Z" fill="#F8F9FA"/>
+  </svg>
+</div>
+
+<!-- FOOTER CTA -->
+<footer>
+  <div class="footer-cta" id="rejoindre">
+    <div class="footer-cta-box">
+      <p>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        S'inscrire à la prochaine sortie ?
+      </p>
+      <a href="https://forms.gle/Rda67xiCGUTGC1aF7" target="_blank">
+        Je m'inscris !
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Entrepreneurs 33 Nord Bassin</span>
+    <span id="date-maj" style="font-style:italic;color:#9CA3AF">Mise à jour : —</span>
+  </div>
+</footer>
+
+<!-- LOADER -->
+<div id="loader" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(255,255,255,0.85);backdrop-filter:blur(4px);align-items:center;justify-content:center;flex-direction:column;gap:16px;">
+  <div style="width:44px;height:44px;border:3px solid var(--bleu-clair);border-top-color:var(--bleu);border-radius:50%;animation:spin .8s linear infinite;"></div>
+  <p style="font-size:14px;color:var(--bleu);font-weight:600;">Chargement du trombinoscope…</p>
+</div>
+<style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popup-overlay" onclick="closePopupIfOverlay(event)">
+  <div class="popup" id="popup-content">
+    <button class="popup-close" onclick="closePopup()" aria-label="Fermer">✕</button>
+    <div class="popup-inner">
+      <div class="popup-left" id="popup-left"></div>
+      <div class="popup-right" id="popup-right"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// DONNÉES ENTREPRENEURS (à remplacer par Google Sheets API)
+// ══════════════════════════════════════════════
+// ── Données chargées depuis data.json (GitHub) ──
+let FONDATRICE = null;
+let ENTREPRENEURS = [];
+
+async function chargerDonnees() {
+  showLoader(true);
+  try {
+    const resp = await fetch('data.json?t=' + Date.now());
+    if (!resp.ok) throw new Error('Erreur chargement');
+    const data = await resp.json();
+
+    // Le premier entrepreneur du JSON est la fondatrice (id=0)
+    // Les autres sont les membres
+    const tous = data.entrepreneurs || [];
+    FONDATRICE = tous.find(e => e.fondatrice === true) || null;
+    ENTREPRENEURS = tous.filter(e => !e.fondatrice);
+
+    populateFilters();
+    renderCards(ENTREPRENEURS);
+    updateBadge(ENTREPRENEURS.length + (FONDATRICE ? 1 : 0));
+    majDateMiseAJour(data.updated);
+    renderFondatrice();
+  } catch(err) {
+    console.error('Impossible de charger data.json :', err);
+    document.getElementById('grid-entrepreneurs').innerHTML =
+      `<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Impossible de charger les données.<br>Merci de réessayer.</p></div>`;
+  } finally {
+    showLoader(false);
+  }
+}
+
+function showLoader(show) {
+  let loader = document.getElementById('loader');
+  if (!loader) return;
+  loader.style.display = show ? 'flex' : 'none';
+}
+
+function majDateMiseAJour(isoDate) {
+  const el = document.getElementById('date-maj');
+  if (!el || !isoDate) return;
+  const d = new Date(isoDate);
+  el.textContent = 'Mise à jour : ' + d.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+}
+
+// ══════════════════════════════════════════════
+// RENDU DES CARTES
+// ══════════════════════════════════════════════
+function getInitials(nom) {
+  return nom.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
+}
+
+function detecterTypeLien(url) {
+  if (!url) return 'site';
+  const u = url.toLowerCase();
+  if (u.includes('linkedin'))  return 'linkedin';
+  if (u.includes('instagram')) return 'instagram';
+  if (u.includes('facebook'))  return 'facebook';
+  if (u.includes('twitter') || u.includes('x.com')) return 'twitter';
+  if (u.includes('tiktok'))    return 'tiktok';
+  if (u.includes('youtube'))   return 'youtube';
+  if (u.includes('pinterest')) return 'pinterest';
+  if (u.includes('snapchat'))  return 'snapchat';
+  if (u.includes('whatsapp'))  return 'whatsapp';
+  return 'site';
+}
+
+function fixDriveUrl(url) {
+  if (!url) return null;
+  // Extraire l'ID Drive et utiliser lh3.googleusercontent.com (contourne CORS)
+  let id = null;
+  const m1 = url.match(/[?&]id=([-\w]{25,})/);
+  const m2 = url.match(/\/d\/([-\w]{25,})/);
+  const m3 = url.match(/\/uc\?export=view&id=([-\w]{25,})/);
+  if (m3) id = m3[1];
+  else if (m1) id = m1[1];
+  else if (m2) id = m2[1];
+  if (id) return 'https://lh3.googleusercontent.com/d/' + id;
+  return url;
+}
+
+function buildPhotoEl(e, size='card') {
+  const cls = size === 'card' ? 'card-photo-placeholder' : 'popup-photo-placeholder';
+  const initials = getInitials(e.nom);
+  const photoUrl = fixDriveUrl(e.photo);
+  if (photoUrl) {
+    return `<img src="${photoUrl}" alt="${e.nom}" class="${size==='card'?'card-photo':'popup-photo'}" loading="lazy"
+      onerror="this.outerHTML='<div class=\'${cls}\'>${initials}</div>'">`;
+  }
+  return `<div class="${cls}">${initials}</div>`;
+}
+
+// Icônes SVG par type de lien
+function iconeSVG(type, size=15) {
+  const s = size;
+  const c = "currentColor";
+  const icons = {
+    linkedin:  `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
+    instagram: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+    facebook:  `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
+    twitter:   `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.43.36a9 9 0 0 1-2.88 1.1A4.52 4.52 0 0 0 16.11 0c-2.5 0-4.52 2-4.52 4.5 0 .35.04.7.11 1.02C7.69 5.34 4.07 3.58 1.64.9a4.5 4.5 0 0 0-.61 2.26c0 1.56.8 2.94 2 3.75a4.5 4.5 0 0 1-2.05-.56v.06c0 2.18 1.55 4 3.6 4.42a4.5 4.5 0 0 1-2.04.08 4.52 4.52 0 0 0 4.22 3.13A9.05 9.05 0 0 1 0 19.54a12.8 12.8 0 0 0 6.92 2.03c8.3 0 12.85-6.88 12.85-12.85 0-.2 0-.39-.01-.58A9.17 9.17 0 0 0 23 3z"/></svg>`,
+    tiktok:    `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.77 0 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-6.12 6.33 6.34 6.34 0 0 0 12.67 0V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-2.02-.05z"/></svg>`,
+    youtube:   `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="${c}" stroke="none"/></svg>`,
+    pinterest: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.26-5.33 1.26-5.33s-.32-.64-.32-1.59c0-1.49.87-2.6 1.94-2.6.92 0 1.36.69 1.36 1.51 0 .92-.59 2.3-.89 3.58-.25 1.07.53 1.94 1.58 1.94 1.9 0 3.17-2.43 3.17-5.3 0-2.19-1.48-3.72-3.59-3.72-2.45 0-3.88 1.84-3.88 3.74 0 .74.28 1.53.64 1.96.07.08.08.16.06.24l-.24.97c-.04.16-.13.19-.3.11-1.12-.52-1.82-2.17-1.82-3.49 0-2.84 2.06-5.44 5.94-5.44 3.12 0 5.55 2.22 5.55 5.19 0 3.1-1.95 5.59-4.66 5.59-.91 0-1.77-.47-2.06-1.03l-.56 2.09c-.2.78-.75 1.76-1.12 2.35.85.26 1.74.4 2.67.4 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>`,
+    snapchat:  `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><path d="M12 2c-4.5 0-7 2.5-7 6.5v1.5c-.5.2-1 .5-1 1s.3.8.8 1c-.3.8-1 1.5-2 1.5.5.3 2 .7 3 .5-.5.8-1.5 1.5-2.5 2 1 0 2-.3 3-1-.5 1-1.5 2-3 2.5 1.5.5 5 1 7 1s5.5-.5 7-1c-1.5-.5-2.5-1.5-3-2.5 1 .7 2 1 3 1-1-.5-2-1.2-2.5-2 1 .2 2.5-.2 3-.5-1 0-1.7-.7-2-1.5.5-.2.8-.6.8-1s-.5-.8-1-1V8.5C19 4.5 16.5 2 12 2z"/></svg>`,
+    whatsapp:  `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
+    site:      `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+    email:     `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+    telephone: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.98-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`
+  };
+  return icons[type] || icons.site;
+}
+
+function classBouton(type, base) {
+  return base; // Toutes les icônes en bleu uniforme
+}
+
+function buildSocialIcons(e, size='card') {
+  const cls = size === 'card' ? 'card-icon-btn' : 'social-btn';
+  let icons = '';
+  const liens = [
+    { url: e.lien1, type: e.lien1type || detecterTypeLien(e.lien1) },
+    { url: e.lien2, type: e.lien2type || detecterTypeLien(e.lien2) },
+    { url: e.lien3, type: e.lien3type || detecterTypeLien(e.lien3) }
+  ];
+  liens.forEach(l => {
+    if (!l.url) return;
+    icons += `<a href="${l.url}" target="_blank" class="${classBouton(l.type, cls)}" title="${l.type}" onclick="event.stopPropagation()">${iconeSVG(l.type)}</a>`;
+  });
+  if (e.telephone) icons += `<a href="tel:${e.telephone.replace(/\./g,'')}" class="${cls}" title="Téléphone" onclick="event.stopPropagation()">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.98-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  </a>`;
+  if (e.email) icons += `<a href="mailto:${e.email}" class="${cls}" title="Email" onclick="event.stopPropagation()">${iconeSVG('email')}</a>`;
+  return icons;
+}
+
+function buildCard(e) {
+  return `
+  <div class="card" onclick="openPopup(${e.id})" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openPopup(${e.id})">
+    <div class="card-top">
+      ${buildPhotoEl(e, 'card')}
+      <div class="card-info">
+        <div class="card-name">${e.nom}</div>
+        <div class="card-metier">${e.metier}</div>
+        ${e.ville ? `<div class="card-ville">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          ${e.ville}
+        </div>` : ''}
+        <div class="card-icons">${buildSocialIcons(e, 'card')}</div>
+      </div>
+    </div>
+    <div class="card-quote">${e.signature}<span style="color:var(--bleu-ciel);font-style:normal;margin-left:2px;">❞</span></div>
+    <button class="card-expand" title="Voir le profil complet" onclick="event.stopPropagation();openPopup(${e.id})">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </button>
+  </div>`;
+}
+
+// ══════════════════════════════════════════════
+// FILTRES
+// ══════════════════════════════════════════════
+function populateFilters() {
+  const activites = [...new Set(ENTREPRENEURS.map(e => e.metier))].sort();
+  const villes = [...new Set(ENTREPRENEURS.map(e => e.ville))].sort();
+  const selAct = document.getElementById('filter-activite');
+  const selVille = document.getElementById('filter-ville');
+  activites.forEach(a => { const o = document.createElement('option'); o.value = a; o.textContent = a; selAct.appendChild(o); });
+  villes.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; selVille.appendChild(o); });
+}
+
+function matchesFondatrice(q, act, ville) {
+  if (!FONDATRICE) return false;
+  const f = FONDATRICE;
+  const matchQ = !q || [f.nom, f.metier, f.ville].some(s => s && s.toLowerCase().includes(q));
+  const matchAct = !act || f.metier === act;
+  const matchVille = !ville || f.ville === ville;
+  return matchQ && matchAct && matchVille;
+}
+
+function filterCards() {
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  const act = document.getElementById('filter-activite').value;
+  const ville = document.getElementById('filter-ville').value;
+
+  // Fondatrice
+  const fondWrapper = document.getElementById('fondatrice-wrapper');
+  if (fondWrapper) fondWrapper.style.display = matchesFondatrice(q, act, ville) ? 'block' : 'none';
+
+  const filtered = ENTREPRENEURS.filter(e => {
+    const matchQ = !q || [e.nom, e.metier, e.ville].some(s => s && s.toLowerCase().includes(q));
+    const matchAct = !act || e.metier === act;
+    const matchVille = !ville || e.ville === ville;
+    return matchQ && matchAct && matchVille;
+  });
+
+  // Compteur : inclure fondatrice si visible
+  const fondVisible = !fondWrapper || fondWrapper.style.display !== 'none';
+  updateBadge(filtered.length + (fondVisible ? 1 : 0));
+  renderCards(filtered);
+}
+
+function updateBadge(count) {
+  const badge = document.getElementById('badge-count');
+  if (badge) badge.textContent = `${count} membre${count > 1 ? 's' : ''}`;
+}
+
+function renderCards(list) {
+  const grid = document.getElementById('grid-entrepreneurs');
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="empty-state">
+      <div class="empty-state-icon">🔍</div>
+      <p>Aucun entrepreneur trouvé.<br>Essayez une autre recherche.</p>
+    </div>`;
+    return;
+  }
+  grid.innerHTML = list.map((e, i) => {
+    const card = buildCard(e);
+    return card.replace('<div class="card"', `<div class="card" style="animation-delay:${i * 0.05}s"`);
+  }).join('');
+}
+
+// ══════════════════════════════════════════════
+// POPUP
+// ══════════════════════════════════════════════
+function openPopup(id) {
+  const allMembers = [FONDATRICE, ...ENTREPRENEURS].filter(Boolean);
+  const e = allMembers.find(x => x.id === id);
+  if (!e) return;
+
+  // GAUCHE
+  let leftHTML = buildPhotoEl(e, 'popup');
+  leftHTML += `<div class="popup-name">${e.nom}</div>`;
+  leftHTML += `<div class="popup-metier">${e.metier}</div>`;
+  if (e.ville) leftHTML += `<div class="popup-ville"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${e.ville}</div>`;
+  leftHTML += `<div class="popup-quote">${e.signature}<span style="color:var(--bleu-ciel);font-style:normal;margin-left:2px;">❞</span></div>`;
+
+  // DROITE
+  let rightHTML = '';
+  // À propos
+  if (e.description) {
+    rightHTML += `<div class="popup-section">
+      <div class="popup-section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        À propos
+      </div>
+      <div class="popup-desc">${e.description}</div>
+    </div>`;
+    rightHTML += '<div class="popup-divider"></div>';
+  }
+
+  // Expertises
+  if (e.expertises && e.expertises.length) {
+    rightHTML += `<div class="popup-section">
+      <div class="popup-section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Expertises
+      </div>
+      <div class="tags-wrap">${e.expertises.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    </div>`;
+    rightHTML += '<div class="popup-divider"></div>';
+  }
+
+  // Liens & contact
+  // Couleurs et icônes par type pour la popup
+  const BLEU = '#1B5EA6';
+  const iconePopup = {
+    pinterest: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${BLEU}" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.26-5.33 1.26-5.33s-.32-.64-.32-1.59c0-1.49.87-2.6 1.94-2.6.92 0 1.36.69 1.36 1.51 0 .92-.59 2.3-.89 3.58-.25 1.07.53 1.94 1.58 1.94 1.9 0 3.17-2.43 3.17-5.3 0-2.19-1.48-3.72-3.59-3.72-2.45 0-3.88 1.84-3.88 3.74 0 .74.28 1.53.64 1.96.07.08.08.16.06.24l-.24.97c-.04.16-.13.19-.3.11-1.12-.52-1.82-2.17-1.82-3.49 0-2.84 2.06-5.44 5.94-5.44 3.12 0 5.55 2.22 5.55 5.19 0 3.1-1.95 5.59-4.66 5.59-.91 0-1.77-.47-2.06-1.03l-.56 2.09c-.2.78-.75 1.76-1.12 2.35.85.26 1.74.4 2.67.4 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>`,
+    snapchat:  `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${BLEU}" stroke-width="2"><path d="M12 2c-4.5 0-7 2.5-7 6.5v1.5c-.5.2-1 .5-1 1s.3.8.8 1c-.3.8-1 1.5-2 1.5.5.3 2 .7 3 .5-.5.8-1.5 1.5-2.5 2 1 0 2-.3 3-1-.5 1-1.5 2-3 2.5 1.5.5 5 1 7 1s5.5-.5 7-1c-1.5-.5-2.5-1.5-3-2.5 1 .7 2 1 3 1-1-.5-2-1.2-2.5-2 1 .2 2.5-.2 3-.5-1 0-1.7-.7-2-1.5.5-.2.8-.6.8-1s-.5-.8-1-1V8.5C19 4.5 16.5 2 12 2z"/></svg>`,
+    whatsapp:  `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${BLEU}" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
+    linkedin:  `<svg width="16" height="16" viewBox="0 0 24 24" fill="${BLEU}"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
+    instagram: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${BLEU}" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+    facebook:  `<svg width="16" height="16" viewBox="0 0 24 24" fill="${BLEU}"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
+    youtube:   `<svg width="16" height="16" viewBox="0 0 24 24" fill="${BLEU}"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>`,
+    tiktok:    `<svg width="16" height="16" viewBox="0 0 24 24" fill="${BLEU}"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/></svg>`,
+    twitter:   `<svg width="16" height="16" viewBox="0 0 24 24" fill="${BLEU}"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.43.36a9 9 0 0 1-2.88 1.1A4.52 4.52 0 0 0 16.11 0c-2.5 0-4.52 2-4.52 4.5 0 .35.04.7.11 1.02C7.69 5.34 4.07 3.58 1.64.9a4.5 4.5 0 0 0-.61 2.26c0 1.56.8 2.94 2 3.75a4.5 4.5 0 0 1-2.05-.56v.06c0 2.18 1.55 4 3.6 4.42a4.5 4.5 0 0 1-2.04.08 4.52 4.52 0 0 0 4.22 3.13A9.05 9.05 0 0 1 0 19.54a12.8 12.8 0 0 0 6.92 2.03c8.3 0 12.85-6.88 12.85-12.85 0-.2 0-.39-.01-.58A9.17 9.17 0 0 0 23 3z"/></svg>`,
+    site:      `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${BLEU}" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+    default:   `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${BLEU}" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`
+  };
+  const bgPopup = { linkedin:'#E8F3FB', instagram:'#E8F3FB', facebook:'#E8F3FB', youtube:'#E8F3FB', tiktok:'#E8F3FB', twitter:'#E8F3FB', site:'#E8F3FB', default:'#E8F3FB' };
+  const extLink = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+
+  let linksHTML = '';
+  [[e.lien1, e.lien1type],[e.lien2, e.lien2type],[e.lien3, e.lien3type]].forEach(([url, type]) => {
+    if (!url) return;
+    const t = type || 'site';
+    const ic = iconePopup[t] || iconePopup.default;
+    const bg = bgPopup[t] || bgPopup.default;
+    linksHTML += `<a href="${url}" target="_blank" class="popup-link">
+      <div class="popup-link-left"><div class="popup-link-icon" style="background:${bg}">${ic}</div>
+      <span class="popup-link-text">${url.replace('https://','').replace('http://','')}</span></div>${extLink}
+    </a>`;
+  });
+  if (e.email) linksHTML += `<a href="mailto:${e.email}" class="popup-link">
+    <div class="popup-link-left"><div class="popup-link-icon email-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A5568" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+    <span class="popup-link-text">${e.email}</span></div>
+  </a>`;
+  if (e.telephone) linksHTML += `<div class="popup-link" style="cursor:default">
+    <div class="popup-link-left"><div class="popup-link-icon phone-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A5568" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.98-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+    <span class="popup-link-text">${e.telephone}</span></div>
+  </div>`;
+
+  if (linksHTML) {
+    rightHTML += `<div class="popup-section">
+      <div class="popup-section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        Liens &amp; Contact
+      </div>
+      <div class="popup-links">${linksHTML}</div>
+    </div>`;
+    rightHTML += '<div class="popup-divider"></div>';
+  }
+
+  // Zone d'intervention
+  if (e.intervention) {
+    rightHTML += `<div class="popup-section">
+      <div class="popup-section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Zone d'intervention
+      </div>
+      <div class="popup-intervention">${e.intervention}</div>
+    </div>`;
+  }
+
+  document.getElementById('popup-left').innerHTML = leftHTML;
+  document.getElementById('popup-right').innerHTML = rightHTML;
+  document.getElementById('popup-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePopup() {
+  document.getElementById('popup-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closePopupIfOverlay(e) {
+  if (e.target === document.getElementById('popup-overlay')) closePopup();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+function toggleMobileMenu() {
+  // Simple toggle pour mobile
+  const links = document.querySelector('.nav-links');
+  if (links.style.display === 'flex') {
+    links.style.display = 'none';
+  } else {
+    links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:1rem 2rem;gap:1rem;border-bottom:1px solid rgba(27,94,166,0.1);z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);';
+  }
+}
+
+function renderFondatrice() {
+  const wrapper = document.getElementById('fondatrice-wrapper');
+  if (!wrapper) return;
+  if (!FONDATRICE) { wrapper.style.display = 'none'; return; }
+  const f = FONDATRICE;
+  wrapper.style.display = 'block';
+  wrapper.innerHTML = `
+    <div class="card" onclick="openPopup(${f.id})" role="button" tabindex="0"
+         onkeydown="if(event.key==='Enter')openPopup(${f.id})"
+         style="border:2px solid rgba(27,94,166,0.2);">
+      <div class="card-top">
+        ${buildPhotoEl(f, 'card')}
+        <div class="card-info">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:2px;">
+            <div class="card-name">${f.nom}</div>
+            <span style="background:var(--bleu);color:white;font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px;white-space:nowrap;">⭐ Fondatrice</span>
+          </div>
+          <div class="card-metier">${f.metier}</div>
+          ${f.ville ? `<div class="card-ville">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            ${f.ville}
+          </div>` : ''}
+          <div class="card-icons">${buildSocialIcons(f, 'card')}</div>
+        </div>
+      </div>
+      <div class="card-quote">${f.signature}<span style="color:var(--bleu-ciel);font-style:normal;margin-left:2px;">❞</span></div>
+      <button class="card-expand" title="Voir le profil complet"
+              onclick="event.stopPropagation();openPopup(${f.id})">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </button>
+    </div>`;
+}
+
+// ── INIT ──
+chargerDonnees();
+</script>
+</body>
+</html>
