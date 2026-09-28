@@ -238,7 +238,7 @@
   /* Grid */
   .grid-entrepreneurs {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     align-items: start;
   }
@@ -255,6 +255,7 @@
     display: flex; flex-direction: column; gap: 12px;
     position: relative;
   }
+  .card-fondatrice { border: 2px solid rgba(27,94,166,0.2); }
   .card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
@@ -460,7 +461,7 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
     .hero { padding: 2.5rem 2rem; }
-    .grid-entrepreneurs { grid-template-columns: repeat(2, 1fr); }
+    .grid-entrepreneurs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .section-entrepreneurs { padding: 2rem; }
     .filters-bar { flex-direction: column; align-items: stretch; }
     .search-wrap { max-width: none; }
@@ -475,7 +476,7 @@
     .nav-hamburger { display: block; }
     .hero { padding: 1.5rem 1rem; }
     .hero-icons { grid-template-columns: 1fr; }
-    .grid-entrepreneurs { grid-template-columns: 1fr; gap: 16px; }
+    .grid-entrepreneurs { grid-template-columns: minmax(0, 1fr); gap: 16px; }
     .section-entrepreneurs { padding: 1.5rem 1rem; }
     .popup-inner { grid-template-columns: 1fr; }
     .popup-left { border-right: none; border-bottom: 1px solid rgba(27,94,166,0.1); border-radius: var(--radius) var(--radius) 0 0; position: static; }
@@ -614,8 +615,6 @@
       </select>
     </div>
   </div>
-  <!-- Carte fondatrice — injectée dynamiquement -->
-  <div id="fondatrice-wrapper" class="grid-entrepreneurs" style="margin-bottom:20px;display:none;"></div>
 
   <div class="grid-entrepreneurs" id="grid-entrepreneurs">
     <!-- Cartes injectées dynamiquement -->
@@ -689,10 +688,10 @@ async function chargerDonnees() {
     ENTREPRENEURS = tous.filter(e => !e.fondatrice);
 
     populateFilters();
-    renderCards(ENTREPRENEURS);
-    updateBadge(ENTREPRENEURS.length + (FONDATRICE ? 1 : 0));
+    const membres = [FONDATRICE, ...ENTREPRENEURS].filter(Boolean);
+    renderCards(membres);
+    updateBadge(membres.length);
     majDateMiseAJour(data.updated);
-    renderFondatrice();
   } catch(err) {
     console.error('Impossible de charger data.json :', err);
     document.getElementById('grid-entrepreneurs').innerHTML =
@@ -808,11 +807,14 @@ function buildSocialIcons(e, size='card') {
 
 function buildCard(e) {
   return `
-  <div class="card" onclick="openPopup(${e.id})" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openPopup(${e.id})">
+  <div class="card${e.fondatrice ? ' card-fondatrice' : ''}" onclick="openPopup(${e.id})" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openPopup(${e.id})">
     <div class="card-top">
       ${buildPhotoEl(e, 'card')}
       <div class="card-info">
-        <div class="card-name">${e.nom}</div>
+        ${e.fondatrice ? `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:2px;min-width:0;">
+          <div class="card-name">${e.nom}</div>
+          <span style="background:var(--bleu);color:white;font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px;white-space:nowrap;">⭐ Fondatrice</span>
+        </div>` : `<div class="card-name">${e.nom}</div>`}
         <div class="card-metier">${e.metier}</div>
         ${e.ville ? `<div class="card-ville">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -854,10 +856,6 @@ function filterCards() {
   const act = document.getElementById('filter-activite').value;
   const ville = document.getElementById('filter-ville').value;
 
-  // Fondatrice
-  const fondWrapper = document.getElementById('fondatrice-wrapper');
-  if (fondWrapper) fondWrapper.style.display = matchesFondatrice(q, act, ville) ? 'grid' : 'none';
-
   const filtered = ENTREPRENEURS.filter(e => {
     const matchQ = !q || [e.nom, e.metier, e.ville].some(s => s && s.toLowerCase().includes(q));
     const matchAct = !act || e.metier === act;
@@ -865,9 +863,10 @@ function filterCards() {
     return matchQ && matchAct && matchVille;
   });
 
-  // Compteur : inclure fondatrice si visible
-  const fondVisible = !fondWrapper || fondWrapper.style.display !== 'none';
-  updateBadge(filtered.length + (fondVisible ? 1 : 0));
+  // La fondatrice reste en première position de la grille si elle correspond aux filtres
+  if (matchesFondatrice(q, act, ville)) filtered.unshift(FONDATRICE);
+
+  updateBadge(filtered.length);
   renderCards(filtered);
 }
 
@@ -887,7 +886,7 @@ function renderCards(list) {
   }
   grid.innerHTML = list.map((e, i) => {
     const card = buildCard(e);
-    return card.replace('<div class="card"', `<div class="card" style="animation-delay:${i * 0.05}s"`);
+    return card.replace('<div class="card', `<div style="animation-delay:${i * 0.05}s" class="card`);
   }).join('');
 }
 
@@ -1018,39 +1017,6 @@ function toggleMobileMenu() {
   } else {
     links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:1rem 2rem;gap:1rem;border-bottom:1px solid rgba(27,94,166,0.1);z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);';
   }
-}
-
-function renderFondatrice() {
-  const wrapper = document.getElementById('fondatrice-wrapper');
-  if (!wrapper) return;
-  if (!FONDATRICE) { wrapper.style.display = 'none'; return; }
-  const f = FONDATRICE;
-  wrapper.style.display = 'grid';
-  wrapper.innerHTML = `
-    <div class="card" onclick="openPopup(${f.id})" role="button" tabindex="0"
-         onkeydown="if(event.key==='Enter')openPopup(${f.id})"
-         style="border:2px solid rgba(27,94,166,0.2);">
-      <div class="card-top">
-        ${buildPhotoEl(f, 'card')}
-        <div class="card-info">
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:2px;">
-            <div class="card-name">${f.nom}</div>
-            <span style="background:var(--bleu);color:white;font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px;white-space:nowrap;">⭐ Fondatrice</span>
-          </div>
-          <div class="card-metier">${f.metier}</div>
-          ${f.ville ? `<div class="card-ville">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            ${f.ville}
-          </div>` : ''}
-          <div class="card-icons">${buildSocialIcons(f, 'card')}</div>
-        </div>
-      </div>
-      <div class="card-quote">${f.signature}<span style="color:var(--bleu-ciel);font-style:normal;margin-left:2px;">❞</span></div>
-      <button class="card-expand" title="Voir le profil complet"
-              onclick="event.stopPropagation();openPopup(${f.id})">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      </button>
-    </div>`;
 }
 
 // ── INIT ──
