@@ -240,6 +240,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    align-items: start;
   }
 
   /* Carte entrepreneur */
@@ -614,7 +615,7 @@
     </div>
   </div>
   <!-- Carte fondatrice — injectée dynamiquement -->
-  <div id="fondatrice-wrapper" style="margin-bottom:20px;display:none;"></div>
+  <div id="fondatrice-wrapper" class="grid-entrepreneurs" style="margin-bottom:20px;display:none;"></div>
 
   <div class="grid-entrepreneurs" id="grid-entrepreneurs">
     <!-- Cartes injectées dynamiquement -->
@@ -799,7 +800,7 @@ function buildSocialIcons(e, size='card') {
     icons += `<a href="${l.url}" target="_blank" class="${classBouton(l.type, cls)}" title="${l.type}" onclick="event.stopPropagation()">${iconeSVG(l.type)}</a>`;
   });
   if (e.telephone) icons += `<a href="tel:${e.telephone.replace(/\./g,'')}" class="${cls}" title="Téléphone" onclick="event.stopPropagation()">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.98-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.98-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
   </a>`;
   if (e.email) icons += `<a href="mailto:${e.email}" class="${cls}" title="Email" onclick="event.stopPropagation()">${iconeSVG('email')}</a>`;
   return icons;
@@ -855,7 +856,7 @@ function filterCards() {
 
   // Fondatrice
   const fondWrapper = document.getElementById('fondatrice-wrapper');
-  if (fondWrapper) fondWrapper.style.display = matchesFondatrice(q, act, ville) ? 'block' : 'none';
+  if (fondWrapper) fondWrapper.style.display = matchesFondatrice(q, act, ville) ? 'grid' : 'none';
 
   const filtered = ENTREPRENEURS.filter(e => {
     const matchQ = !q || [e.nom, e.metier, e.ville].some(s => s && s.toLowerCase().includes(q));
@@ -1024,7 +1025,7 @@ function renderFondatrice() {
   if (!wrapper) return;
   if (!FONDATRICE) { wrapper.style.display = 'none'; return; }
   const f = FONDATRICE;
-  wrapper.style.display = 'block';
+  wrapper.style.display = 'grid';
   wrapper.innerHTML = `
     <div class="card" onclick="openPopup(${f.id})" role="button" tabindex="0"
          onkeydown="if(event.key==='Enter')openPopup(${f.id})"
