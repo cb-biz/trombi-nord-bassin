@@ -240,7 +240,9 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
-    align-items: start;
+    /* Toutes les rangées ont la même hauteur (celle de la carte la plus haute) */
+    grid-auto-rows: 1fr;
+    align-items: stretch;
   }
 
   /* Carte entrepreneur */
