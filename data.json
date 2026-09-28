@@ -345,6 +345,25 @@
     {
       "id": 19,
       "fondatrice": false,
+      "photo": "https://drive.google.com/uc?export=view&id=1Z9MGPpb7enkZWpWzRWtDWEi4HRCVJrDz",
+      "nom": "Florence Bourguignon",
+      "metier": "Accompagnatrice de projets et de talents",
+      "ville": "Andernos-les-Bains 33510",
+      "signature": "Le sens naît du faire ensemble : révélez les talents pour faire grandir les projets",
+      "description": "J'accompagne les adultes dans leurs évolutions et transitions professionnelles à travers des accompagnements individualisés et collectifs. Convaincue que les réponses se trouvent en soi et se révèlent aussi grâce aux autres, je place la connaissance de soi et l'intelligence collective  au cœur de ma démarche. A travers des accompagnements personnalisés, des ateliers et des groupes de codéveloppement, mon objectif est d'aider chacun à mieux se connaître pour construire un projet qui lui ressemble, aligné avec ses valeurs, ses talents et ses aspirations. Je reçois sur différents lieux du Bassin d'Arcachon grâce à un réseau d'espaces de coworking partenaires, ainsi qu'à distance en visio.",
+      "lien1": "linkedin.com/in/florence-bourguignon",
+      "lien1type": "linkedin",
+      "lien2": null,
+      "lien2type": null,
+      "lien3": null,
+      "lien3type": null,
+      "email": "florence@novaia.pro",
+      "telephone": "07.60.80.12.55",
+      "intervention": "Bassin d'Arcachon - Porte du Médoc"
+    },
+    {
+      "id": 20,
+      "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1UwL8RXUJkMEKhK1ZIqq7WIuY-siB637e",
       "nom": "Emilie Desvignes",
       "metier": "Accompagnement des parents et futurs parents dans la création du lien familial, atelier bébé signe",
@@ -362,7 +381,7 @@
       "intervention": "Bassin d'Arcachon"
     },
     {
-      "id": 20,
+      "id": 21,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=14Ipc8IgGJiOpuXfhm57thsSYU4-EjfHO",
       "nom": "Marjorie RIFFAUD",
@@ -381,7 +400,7 @@
       "intervention": "Partout dans le monde grâce aux visio"
     },
     {
-      "id": 21,
+      "id": 22,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1JnWJw_U0y1CWDlZEORoPpeW-9xYEfTbL",
       "nom": "Florian Michiels",
@@ -400,7 +419,7 @@
       "intervention": "Arès"
     },
     {
-      "id": 22,
+      "id": 23,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1EbJVcXiMoGN8EygBu9dgwrMrko9Sh6yv",
       "nom": "Mélissande PENNIELLO",
@@ -419,7 +438,7 @@
       "intervention": null
     },
     {
-      "id": 23,
+      "id": 24,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1X5wcyNG8Ps5ZDX1qOcKIIreAsICp-0rs",
       "nom": "Tiphaine DUNIAUD",
@@ -438,7 +457,7 @@
       "intervention": null
     },
     {
-      "id": 24,
+      "id": 25,
       "fondatrice": true,
       "photo": "https://drive.google.com/uc?export=view&id=1QL83FqNsjf5goO9veE-YlUuX_yddck9r",
       "nom": "Christel Biau",
@@ -457,5 +476,5 @@
       "intervention": "France et monde francophone grâce aux visio"
     }
   ],
-  "updated": "2026-09-28T16:24:09.125Z"
+  "updated": "2026-09-28T16:24:36.888Z"
 }
