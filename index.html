@@ -297,13 +297,17 @@
   .card-icon-btn:hover svg { stroke: white; fill: white; }
   .card-quote {
     font-size: 13px; color: #4A5568; font-style: italic; line-height: 1.6;
-    border-top: 1px solid rgba(27,94,166,0.08); padding-top: 12px;
-    position: relative; padding-left: 20px; padding-right: 20px;
+    border-top: 1px solid rgba(27,94,166,0.08); padding: 12px 20px 0;
+    /* Occupe la hauteur restante de la carte et centre la citation dedans */
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    text-align: center;
   }
-  .card-quote::before {
-    content: '❝'; position: absolute; left: 0; top: 10px;
+  .card-quote-text::before,
+  .card-quote-text::after {
     color: var(--bleu-ciel); font-style: normal; font-size: 16px; line-height: 1;
   }
+  .card-quote-text::before { content: '❝'; margin-right: 6px; }
+  .card-quote-text::after  { content: '❞'; margin-left: 6px; }
 
   .card-expand {
     position: absolute; bottom: 14px; right: 14px;
@@ -825,7 +829,7 @@ function buildCard(e) {
         <div class="card-icons">${buildSocialIcons(e, 'card')}</div>
       </div>
     </div>
-    <div class="card-quote">${e.signature}<span style="color:var(--bleu-ciel);font-style:normal;margin-left:2px;">❞</span></div>
+    <div class="card-quote"><span class="card-quote-text">${e.signature}</span></div>
     <button class="card-expand" title="Voir le profil complet" onclick="event.stopPropagation();openPopup(${e.id})">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
     </button>
