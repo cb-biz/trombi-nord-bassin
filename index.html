@@ -715,7 +715,7 @@ async function chargerDonnees() {
 
     // Le premier entrepreneur du JSON est la fondatrice (id=0)
     // Les autres sont les membres
-    const tous = data.entrepreneurs || [];
+    const tous = (data.entrepreneurs || []).map(preparerMembre);
     FONDATRICE = tous.find(e => e.fondatrice === true) || null;
     ENTREPRENEURS = tous.filter(e => !e.fondatrice);
 
@@ -875,38 +875,95 @@ function buildCard(e) {
 // ══════════════════════════════════════════════
 // FILTRES
 // ══════════════════════════════════════════════
-function populateFilters() {
-  const activites = [...new Set(ENTREPRENEURS.map(e => e.metier))].sort();
-  const villes = [...new Set(ENTREPRENEURS.map(e => e.ville))].sort();
-  const selAct = document.getElementById('filter-activite');
-  const selVille = document.getElementById('filter-ville');
-  activites.forEach(a => { const o = document.createElement('option'); o.value = a; o.textContent = a; selAct.appendChild(o); });
-  villes.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; selVille.appendChild(o); });
+// ── Normalisation des villes (saisie libre dans le formulaire) ──
+// Clé de comparaison : sans accents, sans casse, tirets/apostrophes → espaces
+function cleTexte(s) {
+  return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .toLowerCase().replace(/[-'’_.]/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
-function matchesFondatrice(q, act, ville) {
-  if (!FONDATRICE) return false;
-  const f = FONDATRICE;
-  const matchQ = !q || [f.nom, f.metier, f.ville].some(s => s && s.toLowerCase().includes(q));
-  const matchAct = !act || f.metier === act;
-  const matchVille = !ville || f.ville === ville;
+// Orthographe officielle des communes du secteur ; ajouter ici toute nouvelle commune
+const COMMUNES = [
+  'Andernos-les-Bains', 'Arès', 'Audenge', 'Biganos', 'Lanton', 'Lège-Cap-Ferret',
+  'Le Porge', 'Marcheprime', 'Mios', 'Le Teich', 'Gujan-Mestras', 'La Teste-de-Buch',
+  'Arcachon', 'Le Barp', 'Salles', 'Lacanau', 'Saint-Jean-d\'Illac', 'Martignas-sur-Jalle',
+  'Mérignac', 'Bordeaux'
+];
+const ALIAS_COMMUNES = { 'andernos': 'Andernos-les-Bains', 'lege': 'Lège-Cap-Ferret', 'cap ferret': 'Lège-Cap-Ferret', 'porge': 'Le Porge', 'la teste': 'La Teste-de-Buch', 'gujan': 'Gujan-Mestras' };
+const INDEX_COMMUNES = Object.fromEntries(COMMUNES.map(c => [cleTexte(c), c]));
+
+// "Andernos les bains et Lège Cap Ferret" → ["Andernos-les-Bains", "Lège-Cap-Ferret"]
+function normaliserVilles(brut) {
+  return [...new Set(String(brut || '')
+    .replace(/\b\d{5}\b/g, '')                         // codes postaux
+    .replace(/\b(et )?(alentours|environs)\b/gi, '')   // "et alentours"
+    .split(/,|\/|;|&|\bet\b/i)
+    .map(morceau => {
+      const cle = cleTexte(morceau);
+      if (!cle) return null;
+      if (INDEX_COMMUNES[cle]) return INDEX_COMMUNES[cle];
+      if (ALIAS_COMMUNES[cle]) return ALIAS_COMMUNES[cle];
+      // Commune inconnue : on garde la saisie, avec une majuscule
+      const t = morceau.trim();
+      return t.charAt(0).toUpperCase() + t.slice(1);
+    })
+    .filter(Boolean))];
+}
+
+function preparerMembre(e) {
+  e.villes = normaliserVilles(e.ville);
+  e.ville = e.villes.join(', ');
+  e.metier = String(e.metier || '').trim();
+  return e;
+}
+
+// ── Filtres ──
+function tousLesMembres() {
+  return [FONDATRICE, ...ENTREPRENEURS].filter(Boolean);
+}
+
+function correspond(e, q, act, ville) {
+  const matchQ = !q || [e.nom, e.metier, e.ville].some(s => cleTexte(s).includes(q));
+  const matchAct = !act || e.metier === act;
+  const matchVille = !ville || e.villes.includes(ville);
   return matchQ && matchAct && matchVille;
 }
 
+// Chaque liste ne propose que les choix qui donnent au moins un résultat
+// compte tenu des autres filtres (et de la recherche)
+function remplirSelect(sel, valeurs, libelleTous) {
+  const actuelle = sel.value;
+  sel.innerHTML = '';
+  sel.appendChild(new Option(libelleTous, ''));
+  valeurs.forEach(v => sel.appendChild(new Option(v, v)));
+  sel.value = valeurs.includes(actuelle) ? actuelle : '';
+}
+
+function populateFilters() {
+  const q = cleTexte(document.getElementById('search-input').value);
+  const selAct = document.getElementById('filter-activite');
+  const selVille = document.getElementById('filter-ville');
+  const tri = (a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' });
+
+  const activites = [...new Set(tousLesMembres()
+    .filter(e => correspond(e, q, '', selVille.value))
+    .map(e => e.metier).filter(Boolean))].sort(tri);
+  const villes = [...new Set(tousLesMembres()
+    .filter(e => correspond(e, q, selAct.value, ''))
+    .flatMap(e => e.villes))].sort(tri);
+
+  remplirSelect(selAct, activites, 'Toutes les activités');
+  remplirSelect(selVille, villes, 'Toutes les villes');
+}
+
 function filterCards() {
-  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  populateFilters();
+  const q = cleTexte(document.getElementById('search-input').value);
   const act = document.getElementById('filter-activite').value;
   const ville = document.getElementById('filter-ville').value;
 
-  const filtered = ENTREPRENEURS.filter(e => {
-    const matchQ = !q || [e.nom, e.metier, e.ville].some(s => s && s.toLowerCase().includes(q));
-    const matchAct = !act || e.metier === act;
-    const matchVille = !ville || e.ville === ville;
-    return matchQ && matchAct && matchVille;
-  });
-
   // La fondatrice reste en première position de la grille si elle correspond aux filtres
-  if (matchesFondatrice(q, act, ville)) filtered.unshift(FONDATRICE);
+  const filtered = tousLesMembres().filter(e => correspond(e, q, act, ville));
 
   updateBadge(filtered.length);
   renderCards(filtered);
