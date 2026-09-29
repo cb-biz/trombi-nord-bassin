@@ -236,6 +236,8 @@
     appearance: none; outline: none; cursor: pointer;
     font-family: 'Inter', sans-serif; color: var(--texte);
     transition: border-color .2s;
+    /* Sans limite, la liste prend la largeur de l'activité la plus longue (~700px) */
+    min-width: 0; max-width: 240px; text-overflow: ellipsis;
   }
   .filter-select:focus { border-color: var(--bleu); }
 
@@ -479,7 +481,8 @@
     .grid-entrepreneurs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .section-entrepreneurs { padding: 2rem; }
     .filters-bar { flex-direction: column; align-items: stretch; }
-    .search-wrap { max-width: none; }
+    .search-wrap { max-width: none; min-width: 0; }
+    .filter-select { max-width: none; width: 100%; }
     .section-header { flex-direction: column; align-items: flex-start; }
     .filters-bar { width: 100%; }
     .footer-cta { padding: 2rem; }
@@ -497,8 +500,16 @@
     .section-entrepreneurs { padding: 1.5rem 1rem; }
     .popup-inner { grid-template-columns: 1fr; }
     .popup-left { border-right: none; border-bottom: 1px solid rgba(27,94,166,0.1); border-radius: var(--radius) var(--radius) 0 0; position: static; }
-    .popup-desc { max-height: none; }
-    .popup-right { padding: 1.5rem; }
+    .popup-desc { max-height: none; font-size: 13px; line-height: 1.7; }
+    /* Fiche compacte sur téléphone : moins de marges, photo plus petite */
+    .popup-overlay { padding: 0.5rem; align-items: flex-end; }
+    .popup { max-height: 92vh; }
+    .popup-close { top: 10px; right: 10px; width: 32px; height: 32px; font-size: 16px; }
+    .popup-inner { min-height: 0; }
+    .popup-left { padding: 1.25rem 1rem 1rem; gap: 4px; }
+    .popup-photo, .popup-photo-placeholder { width: 80px; height: 80px; margin-bottom: 6px; font-size: 28px; border-width: 3px; }
+    .popup-name { font-size: 1.1rem; }
+    .popup-right { padding: 1.25rem 1rem; gap: 16px; }
     .footer-cta { padding: 1.5rem 1rem; }
     .footer-cta-box { padding: 1.2rem 1.5rem; }
     .footer-bottom { padding: 1rem; flex-direction: column; text-align: center; }
