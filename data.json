@@ -212,25 +212,6 @@
     {
       "id": 12,
       "fondatrice": false,
-      "photo": "https://drive.google.com/uc?export=view&id=1rnA5Rbty-s-Lrd1Euuv7DVcgmC3HAWv-",
-      "nom": "Christophe lopez",
-      "metier": "Conciergerie et entretien des locaux",
-      "ville": "Ares",
-      "signature": "Je gere votre logement lors de votre absence",
-      "description": "Service a la carte accueil et depart locataire entretien de vos biens contrat hebdomadaire et mensuel",
-      "lien1": null,
-      "lien1type": null,
-      "lien2": null,
-      "lien2type": null,
-      "lien3": null,
-      "lien3type": null,
-      "email": "christopheconciergerie33@gmail.com",
-      "telephone": "06.66.76.11.11",
-      "intervention": "Ares andernos lanton et la presqu ile"
-    },
-    {
-      "id": 13,
-      "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1Z-AJtnIWVCX3scK-XgRxe84ICudfvB_o",
       "nom": "Arnaud Rispal",
       "metier": "Diagnostics immobiliers",
@@ -248,7 +229,7 @@
       "intervention": null
     },
     {
-      "id": 14,
+      "id": 13,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1qHdIP8hLEv_PT50QrBSWfZCKUIpIrx2r",
       "nom": "Marion Peafrini",
@@ -267,7 +248,7 @@
       "intervention": null
     },
     {
-      "id": 15,
+      "id": 14,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1Gg4tuo1bxCgJL2gKQCSVOR9h5gxH00h7",
       "nom": "Zoonekynd natacha",
@@ -286,7 +267,7 @@
       "intervention": null
     },
     {
-      "id": 16,
+      "id": 15,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1pWDIaX45JsymFCI-rB4zqdhNPgSi27Bp",
       "nom": "Pivoine des Grands Prés",
@@ -305,7 +286,7 @@
       "intervention": "Porge et alentours"
     },
     {
-      "id": 17,
+      "id": 16,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1ar5LCp1NW_s9OmuzncNb0YavOxd6mz_u",
       "nom": "Peggy Mintoff",
@@ -324,7 +305,7 @@
       "intervention": null
     },
     {
-      "id": 18,
+      "id": 17,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1-hys3iffAVN5emci9sykvggjL2-RyLfF",
       "nom": "Philippe Raynaud",
@@ -343,7 +324,7 @@
       "intervention": null
     },
     {
-      "id": 19,
+      "id": 18,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1Z9MGPpb7enkZWpWzRWtDWEi4HRCVJrDz",
       "nom": "Florence Bourguignon",
@@ -362,7 +343,7 @@
       "intervention": "Bassin d'Arcachon - Porte du Médoc"
     },
     {
-      "id": 20,
+      "id": 19,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1UwL8RXUJkMEKhK1ZIqq7WIuY-siB637e",
       "nom": "Emilie Desvignes",
@@ -381,7 +362,7 @@
       "intervention": "Bassin d'Arcachon"
     },
     {
-      "id": 21,
+      "id": 20,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=14Ipc8IgGJiOpuXfhm57thsSYU4-EjfHO",
       "nom": "Marjorie RIFFAUD",
@@ -400,7 +381,7 @@
       "intervention": "Partout dans le monde grâce aux visio"
     },
     {
-      "id": 22,
+      "id": 21,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1JnWJw_U0y1CWDlZEORoPpeW-9xYEfTbL",
       "nom": "Florian Michiels",
@@ -419,7 +400,7 @@
       "intervention": "Arès"
     },
     {
-      "id": 23,
+      "id": 22,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1EbJVcXiMoGN8EygBu9dgwrMrko9Sh6yv",
       "nom": "Mélissande PENNIELLO",
@@ -438,7 +419,7 @@
       "intervention": null
     },
     {
-      "id": 24,
+      "id": 23,
       "fondatrice": false,
       "photo": "https://drive.google.com/uc?export=view&id=1X5wcyNG8Ps5ZDX1qOcKIIreAsICp-0rs",
       "nom": "Tiphaine DUNIAUD",
@@ -457,7 +438,7 @@
       "intervention": null
     },
     {
-      "id": 25,
+      "id": 24,
       "fondatrice": true,
       "photo": "https://drive.google.com/uc?export=view&id=1ZHj0QMcr_1M2RKLaM10Z_OedARz26M7C",
       "nom": "Christel Biau",
@@ -476,5 +457,5 @@
       "intervention": "France et monde francophone grâce aux visio"
     }
   ],
-  "updated": "2026-09-28T17:14:18.793Z"
+  "updated": "2026-09-29T10:05:52.622Z"
 }
