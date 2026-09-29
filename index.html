@@ -34,7 +34,7 @@
   /* ── NAV ── */
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(255,255,255,0.95);
+    background: rgba(232,243,251,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(27,94,166,0.1);
     padding: 0 2rem;
@@ -47,17 +47,15 @@
     text-transform: uppercase; letter-spacing: 0.08em;
   }
   .nav-logo svg { width: 28px; height: 28px; }
-  .nav-links { display: flex; align-items: center; gap: 2rem; }
-  .nav-links a { font-size: 14px; color: var(--gris-texte); text-decoration: none; font-weight: 500; transition: color .2s; }
-  .nav-links a:hover { color: var(--bleu); }
-  .nav-links a.nav-facebook { display: inline-flex; align-items: center; gap: 6px; color: var(--bleu); }
-  .nav-links a.nav-facebook:hover { color: #154e8a; }
-  .nav-links a.nav-cta {
+  .nav-links { display: flex; align-items: center; gap: 10px; }
+  /* Trois pastilles blanches identiques sur le bandeau bleu clair */
+  .nav-links a {
     display: inline-flex; align-items: center; gap: 6px;
-    background: var(--bleu); color: white;
-    padding: 8px 16px; border-radius: 50px; transition: background .2s;
+    font-size: 14px; font-weight: 500; color: var(--bleu); text-decoration: none;
+    background: white; padding: 8px 16px; border-radius: 50px;
+    transition: background .2s, color .2s;
   }
-  .nav-links a.nav-cta:hover { background: #154e8a; color: white; }
+  .nav-links a:hover { background: var(--bleu); color: white; }
   /* Texte court dans la barre, texte complet dans le menu mobile */
   .nav-long { display: none; }
   .nav-hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--bleu); }
@@ -528,13 +526,6 @@
 </head>
 <body>
 
-<!-- BANDEAU FACEBOOK -->
-<a href="https://www.facebook.com/groups/1508110040120064/?ref=share" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#1B5EA6;color:white;text-decoration:none;font-size:13px;font-weight:600;padding:9px 1rem;text-align:center;transition:background .2s;" onmouseover="this.style.background='#154e8a'" onmouseout="this.style.background='#1B5EA6'">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-  Nous suivre sur Facebook — Rejoindre le groupe
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-</a>
-
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
@@ -546,13 +537,16 @@
     Club d'Entrepreneurs
   </div>
   <div class="nav-links">
-    <a href="#entrepreneurs">Membres</a>
-    <a href="https://www.facebook.com/groups/1508110040120064/?ref=share" target="_blank" class="nav-facebook" title="Rejoindre le groupe Facebook">
+    <a href="#entrepreneurs">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Membres
+    </a>
+    <a href="https://www.facebook.com/groups/1508110040120064/?ref=share" target="_blank" title="Rejoindre le groupe Facebook">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
       <span class="nav-court">Groupe Facebook</span><span class="nav-long">Rejoindre le groupe Facebook</span>
     </a>
-    <a href="https://forms.gle/Rda67xiCGUTGC1aF7" target="_blank" class="nav-cta" title="S'inscrire à la prochaine sortie">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <a href="https://forms.gle/Rda67xiCGUTGC1aF7" target="_blank" title="S'inscrire à la prochaine sortie">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       <span class="nav-court">Prochaine sortie</span><span class="nav-long">S'inscrire à la prochaine sortie</span>
     </a>
   </div>
@@ -1064,7 +1058,7 @@ function toggleMobileMenu() {
   if (links.style.display === 'flex') {
     links.style.display = 'none';
   } else {
-    links.style.cssText = 'display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:64px;left:0;right:0;background:white;padding:1rem 2rem;gap:1rem;border-bottom:1px solid rgba(27,94,166,0.1);z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);';
+    links.style.cssText = 'display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:64px;left:0;right:0;background:var(--bleu-clair);padding:1rem 2rem;gap:10px;border-bottom:1px solid rgba(27,94,166,0.1);z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);';
   }
 }
 
