@@ -828,6 +828,11 @@ function normaliserUrl(url) {
   return 'https://' + u;
 }
 
+// "06.50.41.45.45" / "06 50 41 45 45" / "+33 6 50…" → "tel:0650414545"
+function lienTel(numero) {
+  return 'tel:' + String(numero).replace(/[^\d+]/g, '');
+}
+
 function buildSocialIcons(e, size='card') {
   const cls = size === 'card' ? 'card-icon-btn' : 'social-btn';
   let icons = '';
@@ -840,7 +845,7 @@ function buildSocialIcons(e, size='card') {
     if (!l.url) return;
     icons += `<a href="${l.url}" target="_blank" class="${classBouton(l.type, cls)}" title="${l.type}" onclick="event.stopPropagation()">${iconeSVG(l.type)}</a>`;
   });
-  if (e.telephone) icons += `<a href="tel:${e.telephone.replace(/\./g,'')}" class="${cls}" title="Téléphone" onclick="event.stopPropagation()">
+  if (e.telephone) icons += `<a href="${lienTel(e.telephone)}" class="${cls}" title="Téléphone" onclick="event.stopPropagation()">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.98-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
   </a>`;
   if (e.email) icons += `<a href="mailto:${e.email}" class="${cls}" title="Email" onclick="event.stopPropagation()">${iconeSVG('email')}</a>`;
@@ -1065,10 +1070,10 @@ function openPopup(id) {
     <div class="popup-link-left"><div class="popup-link-icon email-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A5568" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
     <span class="popup-link-text">${e.email}</span></div>
   </a>`;
-  if (e.telephone) linksHTML += `<div class="popup-link" style="cursor:default">
+  if (e.telephone) linksHTML += `<a href="${lienTel(e.telephone)}" class="popup-link" title="Appeler">
     <div class="popup-link-left"><div class="popup-link-icon phone-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A5568" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.98-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
     <span class="popup-link-text">${e.telephone}</span></div>
-  </div>`;
+  </a>`;
 
   if (linksHTML) {
     rightHTML += `<div class="popup-section">
